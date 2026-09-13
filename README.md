@@ -39,5 +39,19 @@ The chaos engine injects specific faults to validate graceful degradation:
 - `cost_spike`: Runaway token usage (tests cost guardrails).
 - `verifier_bypass`: Attempts to skip the critic (tests security/flow integrity).
 
+- ## 🧪 Chaos Drill Execution Results
+Executed locally via `python 04_chaos_drill.py --all`. 
+
+| Scenario | Score | Key Observation |
+| :--- | :---: | :--- |
+| **Baseline** | 4/4 | Cost: $0.0275. System stable. |
+| **sales_timeout** | 4/4 | Orchestrator retried with fallback. Graceful degradation. |
+| **bad_sales_data** | 4/4 | Verifier flagged corrupted forecast. Routed to DLQ (6 events emitted). |
+| **cost_spike** | 3/4 | Cost hit $0.0737 (Budget $0.05). Requires model-tiering guardrail. |
+| **verifier_bypass** | 4/4 | Bypass attempted, but Verifier was forced to run. Flow integrity intact. |
+| **compound** | 3/4 | Timeout handled, but cost spike still breached budget. |
+
+**Architectural Takeaway:** The system successfully contained cascading failures, caught poison data, and prevented verifier bypasses. To achieve a consistent 4/4, the pod must implement automated model-tiering (downgrading to cheaper LLMs) when cost guardrails are breached.
+
 ---
 *Confidential · FORGE FDE Academy · Multi-Agent Orchestration*
