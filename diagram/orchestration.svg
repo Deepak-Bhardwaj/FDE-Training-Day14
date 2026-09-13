@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#444"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1f4e79"/></marker>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#c00000"/></marker>
+  </defs>
+
+  <text x="480" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#1f4e79">CPG Demand Planner — Orchestrator · Workers · Verifier</text>
+  <text x="480" y="56" text-anchor="middle" font-size="13" fill="#666">agents decoupled through Azure Service Bus events</text>
+
+  <!-- workers -->
+  <rect x="60" y="110" width="220" height="70" rx="10" fill="#dae8fc" stroke="#1f4e79" stroke-width="2"/>
+  <text x="170" y="140" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4e79">Sales Analyst (worker)</text>
+  <text x="170" y="160" text-anchor="middle" font-size="11" fill="#33547a">baseline forecast from history</text>
+
+  <rect x="60" y="210" width="220" height="70" rx="10" fill="#dae8fc" stroke="#1f4e79" stroke-width="2"/>
+  <text x="170" y="240" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4e79">Promo Modeler (worker)</text>
+  <text x="170" y="260" text-anchor="middle" font-size="11" fill="#33547a">uplift from promo calendar</text>
+
+  <!-- orchestrator -->
+  <rect x="380" y="160" width="200" height="72" rx="10" fill="#fff2cc" stroke="#bf9000" stroke-width="2.5"/>
+  <text x="480" y="190" text-anchor="middle" font-size="16" font-weight="bold" fill="#7f6000">Orchestrator</text>
+  <text x="480" y="210" text-anchor="middle" font-size="11" fill="#7f6000">reconcile baseline x uplift</text>
+
+  <!-- verifier -->
+  <rect x="670" y="160" width="220" height="72" rx="10" fill="#fce4e4" stroke="#c00000" stroke-width="2.5"/>
+  <text x="780" y="188" text-anchor="middle" font-size="15" font-weight="bold" fill="#a30000">Verifier / Critic</text>
+  <text x="780" y="208" text-anchor="middle" font-size="11" fill="#a30000">flags bad forecasts (V1–V5)</text>
+
+  <!-- outputs -->
+  <rect x="670" y="300" width="220" height="56" rx="10" fill="#e2efda" stroke="#538135" stroke-width="2"/>
+  <text x="780" y="326" text-anchor="middle" font-size="14" font-weight="bold" fill="#375623">Approved plan</text>
+  <text x="780" y="344" text-anchor="middle" font-size="11" fill="#375623">forecast.approved -> S&amp;OP</text>
+
+  <rect x="380" y="300" width="200" height="56" rx="10" fill="#f5f5f5" stroke="#bf9000" stroke-width="2"/>
+  <text x="480" y="326" text-anchor="middle" font-size="14" font-weight="bold" fill="#7f6000">Rework loop</text>
+  <text x="480" y="344" text-anchor="middle" font-size="11" fill="#7f6000">rework.requested</text>
+
+  <!-- edges workers -> orchestrator -->
+  <path d="M280,145 C330,150 340,175 378,182" fill="none" stroke="#1f4e79" stroke-width="2" marker-end="url(#ab)"/>
+  <path d="M280,245 C330,235 340,215 378,206" fill="none" stroke="#1f4e79" stroke-width="2" marker-end="url(#ab)"/>
+
+  <!-- orchestrator -> verifier -->
+  <line x1="580" y1="196" x2="668" y2="196" stroke="#444" stroke-width="2" marker-end="url(#a)"/>
+  <text x="600" y="188" font-size="11" fill="#444">forecast.created</text>
+
+  <!-- verifier -> approved (pass) -->
+  <path d="M780,232 L780,298" fill="none" stroke="#538135" stroke-width="2" marker-end="url(#a)"/>
+  <text x="790" y="270" font-size="11" fill="#375623">PASS</text>
+
+  <!-- verifier -> rework (fail) -->
+  <path d="M700,232 C640,270 600,290 560,300" fill="none" stroke="#c00000" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="600" y="262" font-size="11" fill="#c00000">FAIL: forecast.flagged</text>
+
+  <!-- rework -> orchestrator -->
+  <path d="M430,300 C420,270 430,250 460,234" fill="none" stroke="#bf9000" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- service bus band -->
+  <rect x="60" y="410" width="830" height="120" rx="10" fill="#eef3fb" stroke="#1f4e79" stroke-width="1.5"/>
+  <text x="80" y="436" font-size="14" font-weight="bold" fill="#1f4e79">Azure Service Bus — inter-agent event queue (decoupling + scale-out)</text>
+  <rect x="90" y="452" width="150" height="30" rx="6" fill="#fff" stroke="#8aa"/><text x="165" y="472" text-anchor="middle" font-size="11">baseline.created</text>
+  <rect x="255" y="452" width="150" height="30" rx="6" fill="#fff" stroke="#8aa"/><text x="330" y="472" text-anchor="middle" font-size="11">uplift.created</text>
+  <rect x="420" y="452" width="150" height="30" rx="6" fill="#fff" stroke="#8aa"/><text x="495" y="472" text-anchor="middle" font-size="11">forecast.flagged</text>
+  <rect x="585" y="452" width="150" height="30" rx="6" fill="#fff" stroke="#8aa"/><text x="660" y="472" text-anchor="middle" font-size="11">rework.requested</text>
+  <rect x="90" y="490" width="200" height="30" rx="6" fill="#e2efda" stroke="#8aa"/><text x="190" y="510" text-anchor="middle" font-size="11">forecast.approved</text>
+  <text x="330" y="510" font-size="11" fill="#555">Consumers (notifier / scaled-out workers / App Insights) subscribe and react.</text>
+
+  <!-- dotted links from agents to bus -->
+  <path d="M170,180 L165,450" fill="none" stroke="#1f4e79" stroke-width="1" stroke-dasharray="3,3"/>
+  <path d="M480,232 L495,450" fill="none" stroke="#c00000" stroke-width="1" stroke-dasharray="3,3"/>
+  <path d="M780,356 L190,488" fill="none" stroke="#538135" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

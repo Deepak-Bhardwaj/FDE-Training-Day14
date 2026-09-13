@@ -1,0 +1,11 @@
+{
+  "target_week": 105,
+  "actuals": {
+    "SKU-BEV-01": 20180,
+    "SKU-BEV-02": 10413,
+    "SKU-SNK-01": 15310,
+    "SKU-SNK-02": 7195,
+    "SKU-HOM-01": 6965,
+    "SKU-HOM-02": 4587
+  }
+}

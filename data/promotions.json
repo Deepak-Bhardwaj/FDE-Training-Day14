@@ -1,0 +1,9 @@
+{
+  "target_week": 105,
+  "promotions": {
+    "SKU-BEV-01": 25,
+    "SKU-BEV-02": 20,
+    "SKU-SNK-01": 20,
+    "SKU-HOM-01": 15
+  }
+}

@@ -1,0 +1,22 @@
+# Lab 9 — Multi-agent Orchestration · CrewAI · Azure Service Bus · Chaos Drill
+# Python 3.10–3.12. Use a SEPARATE virtualenv from Labs 7 and 8.
+#   pip install -r requirements.txt
+
+# --- Multi-agent framework ---
+crewai[azure-ai-inference]==1.15.1   # Agents, Tasks, Crew, Process; azure-ai-inference extra
+                                     # is REQUIRED: crewai 1.15.1 routes model="azure/<deployment>"
+                                     # through its native Azure provider (reads AZURE_API_KEY/BASE/VERSION)
+
+# --- Azure services ---
+azure-servicebus==7.14.3       # inter-agent eventing (Lab 9-B)
+azure-monitor-opentelemetry==1.6.4   # Application Insights / Azure Monitor telemetry
+
+# --- Utilities ---
+python-dotenv==1.2.2           # >=1.2.2 required by crewai 1.15.1
+
+# --- Optional evaluation / observability tooling (referenced in the docs) ---
+#   ragas       : forecast/answer quality eval        ->  pip install ragas
+#   langsmith   : tracing for the agents              ->  pip install langsmith
+#   promptfoo   : prompt/regression testing (Node)    ->  npm install -g promptfoo
+# The offline pipeline (pipeline.py) and tests need only python-dotenv; CrewAI and
+# the Azure SDKs are used by the real-Azure paths. Everything else runs offline.

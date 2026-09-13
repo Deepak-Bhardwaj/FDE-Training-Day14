@@ -1,0 +1,50 @@
+{
+  "SKU-BEV-01": {
+    "sku": "SKU-BEV-01",
+    "name": "Cola 330ml",
+    "category": "Beverages",
+    "base": 12000,
+    "capacity": 30000,
+    "promo_sensitivity": 1.8
+  },
+  "SKU-BEV-02": {
+    "sku": "SKU-BEV-02",
+    "name": "Sparkling Water 1L",
+    "category": "Beverages",
+    "base": 7000,
+    "capacity": 18000,
+    "promo_sensitivity": 1.4
+  },
+  "SKU-SNK-01": {
+    "sku": "SKU-SNK-01",
+    "name": "Potato Chips 150g",
+    "category": "Snacks",
+    "base": 9000,
+    "capacity": 22000,
+    "promo_sensitivity": 2.1
+  },
+  "SKU-SNK-02": {
+    "sku": "SKU-SNK-02",
+    "name": "Choc Biscuits 200g",
+    "category": "Snacks",
+    "base": 6000,
+    "capacity": 15000,
+    "promo_sensitivity": 1.9
+  },
+  "SKU-HOM-01": {
+    "sku": "SKU-HOM-01",
+    "name": "Dish Soap 500ml",
+    "category": "Home Care",
+    "base": 5000,
+    "capacity": 12000,
+    "promo_sensitivity": 1.3
+  },
+  "SKU-HOM-02": {
+    "sku": "SKU-HOM-02",
+    "name": "Laundry Pods 20ct",
+    "category": "Home Care",
+    "base": 4000,
+    "capacity": 11000,
+    "promo_sensitivity": 1.5
+  }
+}
